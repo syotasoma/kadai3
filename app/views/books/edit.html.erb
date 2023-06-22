@@ -1,5 +1,5 @@
-<h1>New book</h1>
-<%= form_with model: @book, local: true do |f| %>
+<h1>Editing Book</h1>
+<%= form_with model: book, local: true do |f| %>
     <div>
       <p>Title</p>
         <%= f.text_field :title, class:"form-control book_title" %>
@@ -11,6 +11,6 @@
     </div>
     <br>
     <div>
-        <%= f.submit 'Create Book', class:"btn btn-success" %>
+        <%= f.submit 'Update Book', class:"btn btn-success" %>
     </div>
   <% end %>

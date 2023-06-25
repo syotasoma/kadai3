@@ -1,6 +1,9 @@
 class Booker < ApplicationRecord
   has_one_attached :profile_image
   belongs_to :user
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :image, presence: true
 
 def get_image
   unless image.attached?

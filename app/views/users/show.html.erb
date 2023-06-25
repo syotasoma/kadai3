@@ -1,3 +1,18 @@
-部分テンプレートの記述①
-部分テンプレートの記述②
-link_to user info
+ <h1>User info</h1>
+<div>
+ <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100, 100) %>
+  <% if @user == current_user.id %>
+   <p><%= link_to "introduction",edit_user_path(@user.id) %></p>
+  <% end %>
+</div>
+
+<% @books.each do |book| %>
+<div>
+ <%= link_to user_path(@user.id) do %>
+  <%= image_tag book.user.get_profile_image(100,100) %>
+  <%= book.title %>
+  <%= book.body %>
+ <% end %>
+</div>
+<% end %>

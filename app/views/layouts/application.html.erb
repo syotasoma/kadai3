@@ -11,15 +11,21 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
     <header>
       <% if user_signed_in? %>
       <li>
-          <%= link_to 'User info', new_book_path %>
+          <%= link_to 'User', new_book_path %>
       </li>
        <li>
-         <%= link_to "log out",destroy_user_session_path, method: :delete %>  
+         <%= link_to "log out", destroy_user_session_path, method: :delete %>  
        </li>
+       <li>
+          <%= link_to 'Home', user_path(current_user.id) %>
+      </li>
+      <li>
+          <%= link_to 'Books', books_path %>
+      </li>
       <% else %>
        <li>
          <%= link_to "sign up", new_user_registration_path %>

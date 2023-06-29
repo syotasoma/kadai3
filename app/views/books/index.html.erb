@@ -1,6 +1,3 @@
-<%= flash[:book_create] %>
-<%= flash[:create_alert] %>
-<% if @book !=nil %>
   <p id="notice">
     <div class="error_explanation" >
       <% if @book.errors.any? %>
@@ -13,7 +10,7 @@
     </div>
     <% end %>
   </p>
-<% end %>
+
 
 <div class="container px-5 px-sm-0">
   <div class="row">

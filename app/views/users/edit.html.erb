@@ -1,12 +1,15 @@
+<p id="notice">
+  <div class="error_explanation" >
 <% if @user.errors.any? %>
   <%= @user.errors.count %>error prohibited this obj from being saved:
   <ul>
-    <%= @user.errors.full_messages.each do |message| %>
+    <% @user.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
+  </div>
 <% end %>
-
+ </p>
 <div>
 <h1>User info</h1>
   <%= form_with model: @user do |f| %>

@@ -1,47 +1,48 @@
+<%= flash[:book_create] %>
+<%= flash[:create_alert] %>
+<% if @book !=nil %>
+  <p id="notice">
+    <div class="error_explanation" >
+      <% if @book.errors.any? %>
+      <%= @book.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+  </p>
+<% end %>
+
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
- <%= render 'users/info', user: current_user %>
-      <h1>New book</h1>
-<% if @book.errors.any? %>
-<%= @book.errore.count %>errors prohibited this obj from being saved:
-<ul>
-  <% @book.errors.full_massages.each do |message| %>
-  <li><%= message %></li>
-</ul>
-<% end %>
-
-  <% end %>
-  <%= render 'books/book1',book: @book %>
+      <%= render 'users/book1', book: @book %>
     </div>
-<div class="col-md-8 offset-md-1">
 
-  <table class="table table-striped">
-<h2>Books</h2>
-
-<table>
- <thead>
-  <tr>
-   <th>Title</th>
-  <th>Opinion</th>
-  </tr>
- </thead>
- <tbody>
-  <% @books.each do |book| %>
-     <tr>
-         <td><%= image_tag book.user.get_profile_image(100, 100) %></td>
-         <td><%= book.title %></td>
-         <td><%= book.body %></td>
-     </tr>
-  <% end %>
- </tbody>
-</table>
-</table>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <td><%= link_to user_path(book.user) do %>
+                    <%= image_tag book.user.get_profile_image(100,100) %>
+                  <% end %></td>
+              <td><%= link_to book.title, book_path(book) %></td>
+              <td><%= book.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-    
-  
-
-
-  

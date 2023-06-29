@@ -1,18 +1,36 @@
- <h1>User info</h1>
-<div>
- <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100, 100) %>
-  <% if @user == current_user.id %>
-   <p><%= link_to "introduction",edit_user_path(@user.id) %></p>
-  <% end %>
+<%= flash[:user_update] %>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'user', book: @book, user: @user %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <td><%= link_to image_tag book.user.get_profile_image(100,100) %></td>
+              <td><%= link_to book.title, book_path(book) %></td>
+              <td><%= book.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
-<% @books.each do |book| %>
-<div>
- <%= link_to user_path(@user.id) do %>
-  <%= image_tag book.user.get_profile_image(100,100) %>
-  <%= book.title %>
-  <%= book.body %>
- <% end %>
-</div>
-<% end %>
+  <!--eachメソッドはレシーバーが単数だと繰り返し処理ができずエラーとなる
+  (今回の場合@userをレシーバーにすると、@userは一人だけなのでエラーとなる）
+  そのためレシーバーには繰り返し処理が可能な@booksを置き、コントローラでuserと関連付ける-->
